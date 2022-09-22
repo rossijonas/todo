@@ -1,4 +1,7 @@
 *.vim
 
-# exclude binaries
+# binaries
 wc
+
+# mocks
+.todo.json
