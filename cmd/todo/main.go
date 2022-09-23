@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"os"
 	"strings"
@@ -11,6 +12,15 @@ import (
 const todoFileName = ".todo.json"
 
 func main() {
+	// Parse command line flags
+	task := flag.String("task", "", "Task to be included in the ToDo list")
+	list := flag.Bool("list", false, "List all tasks")
+	complete := flag.Int("complete", 0, "Item to be completed")
+
+	flag.Parse()
+
+	// ^-- stopped here --^
+
 	l := &todo.List{}
 
 	if err := l.Get(todoFileName); err != nil {
