@@ -4,7 +4,6 @@ import (
 	"flag"
 	"fmt"
 	"os"
-	"strings"
 
 	"github.com/rossijonas/todo"
 )
@@ -19,8 +18,6 @@ func main() {
 
 	flag.Parse()
 
-	// ^-- stopped here --^
-
 	l := &todo.List{}
 
 	if err := l.Get(todoFileName); err != nil {
@@ -30,16 +27,31 @@ func main() {
 
 	switch {
 	// For no extra arguments, print the list
-	case len(os.Args) == 1:
+	case *list:
 		for _, item := range *l {
-			fmt.Println(item.Task)
+			if !item.Done {
+				fmt.Println(item.Task)
+			}
 		}
-	default:
-		item := strings.Join(os.Args[1:], " ")
-		l.Add(item)
+	case *complete > 0:
+		if err := l.Complete(*complete); err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(1)
+		}
+
 		if err := l.Save(todoFileName); err != nil {
 			fmt.Fprintln(os.Stderr, err)
 			os.Exit(1)
 		}
+	case *task != "":
+		l.Add(*task)
+
+		if err := l.Save(todoFileName); err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(1)
+		}
+	default:
+		fmt.Fprintln(os.Stderr, "Invalid option")
+		os.Exit(1)
 	}
 }
