@@ -11,6 +11,14 @@ import (
 const todoFileName = ".todo.json"
 
 func main() {
+	flag.Usage = func() {
+		fmt.Fprintf(flag.CommandLine.Output(),
+			"%s tool. Developed for the Pragmatic Bookshelf\n", os.Args[0])
+		fmt.Fprintf(flag.CommandLine.Output(), "Copyright 2022\n")
+		fmt.Fprintf(flag.CommandLine.Output(), "Usage information:\n")
+		flag.PrintDefaults()
+	}
+
 	// Parse command line flags
 	task := flag.String("task", "", "Task to be included in the ToDo list")
 	list := flag.Bool("list", false, "List all tasks")
@@ -28,11 +36,7 @@ func main() {
 	switch {
 	// For no extra arguments, print the list
 	case *list:
-		for _, item := range *l {
-			if !item.Done {
-				fmt.Println(item.Task)
-			}
-		}
+		fmt.Print(l)
 	case *complete > 0:
 		if err := l.Complete(*complete); err != nil {
 			fmt.Fprintln(os.Stderr, err)
