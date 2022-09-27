@@ -70,5 +70,17 @@ func TestTodoCLI(t *testing.T) {
 		}
 	})
 
-	// TODO: Write test for "-complete" flag
+	t.Run("CompleteTask", func(t *testing.T) {
+		cmd := exec.Command(cmdPath, "-complete", "1")
+		out, err := cmd.CombinedOutput()
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		expected := ""
+
+		if expected != string(out) {
+			t.Errorf("Expected %q, got %q instead\n", expected, string(out))
+		}
+	})
 }
