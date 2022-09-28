@@ -27,6 +27,9 @@ func main() {
 	list := flag.Bool("list", false, "List all tasks")
 	complete := flag.Int("complete", 0, "Item to be completed")
 	del := flag.Int("del", 0, "Item to be deleted")
+	// TODO:
+	// verbose := flag.Bool("verbose", false, "Show task metadata")
+	// pending := flag.Bool("pending", false, "Show only incomplete tasks")
 
 	flag.Parse()
 
@@ -90,6 +93,8 @@ func getTask(r io.Reader, args ...string) (string, error) {
 		return strings.Join(args, " "), nil
 	}
 
+	// TODO:
+	// Support multiline input from STDIN, each line is a new task
 	s := bufio.NewScanner(r)
 	s.Scan()
 	if err := s.Err(); err != nil {

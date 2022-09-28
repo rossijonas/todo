@@ -22,6 +22,10 @@ func TestMain(m *testing.M) {
 		binName += ".exe"
 	}
 
+	if os.Getenv("TODO_FILENAME") != "" {
+		fileName = os.Getenv("TODO_FILENAME")
+	}
+
 	build := exec.Command("go", "build", "-o", binName)
 
 	if err := build.Run(); err != nil {
