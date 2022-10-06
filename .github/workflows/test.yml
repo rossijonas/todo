@@ -20,6 +20,7 @@ jobs:
         go-version: ">=1.18.6"
 
     - name: Run Tests
-      run: go test -v .
-      run: go test -v ./cmd/todo
+      run: |
+        go test -v .
+        go test -v ./cmd/todo
 
