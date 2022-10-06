@@ -16,9 +16,8 @@ var todoFileName = ".todo.json"
 func main() {
 	flag.Usage = func() {
 		fmt.Fprintf(flag.CommandLine.Output(),
-			"%s tool. Developed for the Pragmatic Bookshelf\n", os.Args[0])
-		fmt.Fprintf(flag.CommandLine.Output(), "Copyright 2022\n")
-		fmt.Fprintf(flag.CommandLine.Output(), "Usage information:\n")
+			"%s - A Simple Todo List for the CLI.\n", os.Args[0])
+		fmt.Fprintf(flag.CommandLine.Output(), "Usage:\n")
 		flag.PrintDefaults()
 	}
 
