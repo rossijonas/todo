@@ -21,8 +21,6 @@ Use `todo` CLI tool to create and manage a simple todo list.
 
 - Support adding tasks from STDIN.
 
-_(This is an exercise from the book "Powerful Command-Line Applications in Go".)_
-
 ## Installation
 
 ### Requirements:
@@ -104,3 +102,6 @@ $ todo -del 2
 
 - Add support for multiline input from STDIN in the `-add` flag, adding each line as a new task into the list.
 
+## Credits
+
+_This is an exercise from the book "Powerful Command-Line Applications in Go", but it may differ from the original exercise._
